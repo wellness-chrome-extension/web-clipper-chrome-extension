@@ -1,0 +1,29 @@
+div {
+    height: 25px;
+    width: 100px;
+    font-size: 20px
+}
+
+.text {
+    background-color: red
+}
+
+.photo {
+    background-color: orange
+}
+
+.link {
+    background-color: yellow
+}
+
+.video {
+    background-color: yellowgreen
+}
+
+.audio {
+    background-color: lightseagreen
+}
+
+.settings {
+    background-color: lightblue
+}
