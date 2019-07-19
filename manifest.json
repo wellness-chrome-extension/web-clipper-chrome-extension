@@ -2,6 +2,7 @@
     "manifest_version": 2,
     "name": "APP_NAME",
     "description": "DESCRIPTION",
+    "options_page": "profile.html",
     "version": "1.0.0",
     "browser_action": {
       "default_popup": "popup.html"
