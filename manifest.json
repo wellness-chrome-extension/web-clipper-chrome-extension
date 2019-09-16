@@ -1,12 +1,18 @@
 {
     "manifest_version": 2,
-    "name": "APP_NAME",
+    "name": "Inspiration List",
     "description": "DESCRIPTION",
     "options_page": "profile.html",
     "version": "1.0.0",
+    "background": {
+      "scripts": ["sample.js"]
+    },
     "browser_action": {
       "default_popup": "popup.html"
     },
+    "icons": { "16": "icon.png",
+      "48": "icon.png",
+     "128": "icon.png" },
     "permissions": ["activeTab", "contextMenus"],
 
     "content_scripts": [
