@@ -2,6 +2,12 @@ function genericOnClick(info, tab) {
     console.log("item " + info.menuItemId + " was clicked");
     console.log("info: " + JSON.stringify(info));
     console.log("tab: " + JSON.stringify(tab));
+    chrome.storage.sync.set({0: info["selectionText"]}, function() {
+      console.log('Value is set to ' + info["selectionText"]);
+    });
+    chrome.storage.sync.get(['0'], function(result) {
+      console.log('Value currently is ' + result);
+    });
   }
   
   // Create one test item for each context type.
