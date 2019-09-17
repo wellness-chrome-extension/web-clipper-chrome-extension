@@ -6,7 +6,7 @@ function genericOnClick(info, tab) {
       console.log('Value is set to ' + info["selectionText"]);
     });
     chrome.storage.sync.get(['0'], function(result) {
-      console.log('Value currently is ' + result);
+      console.log('Value currently is ' + result[0]);
     });
   }
   
