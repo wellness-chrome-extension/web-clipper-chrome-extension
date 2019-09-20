@@ -43,6 +43,54 @@
       console.log(result.type + ' is set to ' + result.data);
     });
   }
+
+  function linkOnClick (info, tab){
+    console.log("item " + info.menuItemId + " was clicked");
+    console.log("info: " + JSON.stringify(info));
+    console.log("tab: " + JSON.stringify(tab));
+    chrome.storage.sync.set({data: info["linkUrl"], type: 'link'}, function() {
+      console.log('link is set to ' + info["linkUrl"]);
+    });
+    chrome.storage.sync.get(['data', 'type'], function(result) {
+      console.log(result.type + ' is set to ' + result.data);
+    });
+  }
+
+  function imageOnClick (info, tab){
+    console.log("item " + info.menuItemId + " was clicked");
+    console.log("info: " + JSON.stringify(info));
+    console.log("tab: " + JSON.stringify(tab));
+    chrome.storage.sync.set({data: info["srcUrl"], type: 'image'}, function() {
+      console.log('image is set to ' + info["srcUrl"]);
+    });
+    chrome.storage.sync.get(['data', 'type'], function(result) {
+      console.log(result.type + ' is set to ' + result.data);
+    });
+  }
+
+  function audioOnClick (info, tab){
+    console.log("item " + info.menuItemId + " was clicked");
+    console.log("info: " + JSON.stringify(info));
+    console.log("tab: " + JSON.stringify(tab));
+    chrome.storage.sync.set({data: info["srcUrl"], type: 'audio'}, function() {
+      console.log('audio is set to ' + info["srcUrl"]);
+    });
+    chrome.storage.sync.get(['data', 'type'], function(result) {
+      console.log(result.type + ' is set to ' + result.data);
+    });
+  }
+
+  // function videoOnClick (info, tab){
+  //   console.log("item " + info.menuItemId + " was clicked");
+  //   console.log("info: " + JSON.stringify(info));
+  //   console.log("tab: " + JSON.stringify(tab));
+  //   chrome.storage.sync.set({data: info["srcUrl"], type: 'image'}, function() {
+  //     console.log('image is set to ' + info["srcUrl"]);
+  //   });
+  //   chrome.storage.sync.get(['data', 'type'], function(result) {
+  //     console.log(result.type + ' is set to ' + result.data);
+  //   });
+  // }
   
   // Create one test item for each context type.
   // Need to create a different onclick function for each type of context
@@ -67,4 +115,28 @@ var selectionId = chrome.contextMenus.create({
   "title": "Add selection to your inspiration list", 
   "contexts": ['selection'], 
   "onclick": selectionOnClick
+})
+
+var linkId = chrome.contextMenus.create({
+  "title": "Add link to your inspiration list", 
+  "contexts": ['link'], 
+  "onclick": linkOnClick
+})
+
+var imageId = chrome.contextMenus.create({
+  "title": "Add image to your inspiration list", 
+  "contexts": ['image'], 
+  "onclick": imageOnClick
+})
+
+// var videoId = chrome.contextMenus.create({
+//   "title": "Add video to your inspiration list", 
+//   "contexts": ['video'], 
+//   "onclick": videoOnClick
+// })
+
+var audioId = chrome.contextMenus.create({
+  "title": "Add audio to your inspiration list", 
+  "contexts": ['audio'], 
+  "onclick": audioOnClick
 })
