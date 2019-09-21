@@ -5,7 +5,7 @@
     "options_page": "profile.html",
     "version": "1.0.0",
     "background": {
-      "scripts": ["sample.js"]
+      "scripts": ["sample.js", "popup.js"]
     },
     "browser_action": {
       "default_popup": "popup.html"
