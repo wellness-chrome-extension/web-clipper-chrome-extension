@@ -1,14 +1,27 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var link = document.getElementById('link');
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    let val = 'hi'
+    let link1 = document.getElementById('link');
+    chrome.storage.sync.get(['data'], function(result) {
+      val = result.data;
+    })
     // onClick's logic below:
-    link.addEventListener('click', function() {
+    if (link1){
+      link1.addEventListener('click', function() {
         document.getElementById("link").style.fontWeight = 'bold';
-    });
+        document.getElementById('output').innerHTML = val;
+      });
+      
+    }
 });
 
+
+
+
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    console.log('new data type is %s. New value is %s', changes['type'].newValue, changes['data'].newValue)
+    console.log('New value is %s', changes['data'].newValue)
     for (var key in changes) {
       var storageChange = changes[key];
       console.log('Storage key "%s" in namespace "%s" changed. ' +
@@ -17,16 +30,16 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
                   namespace,
                   storageChange.oldValue,
                   storageChange.newValue);
-    //document.getElementById('output').innerHTML = 'hey'
-
     }
+    chrome.browserAction.setBadgeText({ text: changes['data'].newValue })
+
   });
+
+
 
 // let val = 'hi'
 // document.addEventListener('oncontextmenu', function () {
 //     document.getElementById('output').innerHTML = val
 // });
 
-    // await chrome.storage.sync.get(['data'], function(result) {
-    //     val = result.data;
-    // })
+
