@@ -36,11 +36,13 @@
     console.log("item " + info.menuItemId + " was clicked");
     console.log("info: " + JSON.stringify(info));
     console.log("tab: " + JSON.stringify(tab));
-    chrome.storage.sync.set({data: info["selectionText"], type: 'selection'}, function() {
+    let date1 = new Date;
+    let seconds1 = date1.getTime().toString();
+    chrome.storage.sync.set({[seconds1]: [info["selectionText"], 'selection']}, function() {
       console.log('selectionText is set to ' + info["selectionText"]);
     });
-    chrome.storage.sync.get(['data', 'type'], function(result) {
-      console.log(result.type + ' is set to ' + result.data);
+    chrome.storage.sync.get([seconds1, 'type'], function(result) {
+      console.log(result[seconds1][0] + ' is set to ' + result[seconds1][1] + 'and the timeId is ' + seconds1);
     });
   }
 
@@ -48,11 +50,13 @@
     console.log("item " + info.menuItemId + " was clicked");
     console.log("info: " + JSON.stringify(info));
     console.log("tab: " + JSON.stringify(tab));
-    chrome.storage.sync.set({data: info["linkUrl"], type: 'link'}, function() {
+    let date1 = new Date;
+    let seconds1 = date1.getTime().toString();
+    chrome.storage.sync.set({[seconds1]: [info["linkUrl"], 'link']}, function() {
       console.log('link is set to ' + info["linkUrl"]);
     });
-    chrome.storage.sync.get(['data', 'type'], function(result) {
-      console.log(result.type + ' is set to ' + result.data);
+    chrome.storage.sync.get([seconds1, 'type'], function(result) {
+      console.log(result[seconds1][0] + ' is set to ' + result[seconds1][1] + 'and the timeId is ' + seconds1);
     });
   }
 
@@ -106,25 +110,25 @@
   // }
 
 var pageId = chrome.contextMenus.create({
-  "title": "Add page to your inspiration list", 
+  "title": "Save page to Web Clipper", 
   "contexts": ['page'], 
   "onclick": pageOnClick
 })
 
 var selectionId = chrome.contextMenus.create({
-  "title": "Add selection to your inspiration list", 
+  "title": "Save selection to Web Clipper", 
   "contexts": ['selection'], 
   "onclick": selectionOnClick
 })
 
 var linkId = chrome.contextMenus.create({
-  "title": "Add link to your inspiration list", 
+  "title": "Save link to Web Clipper", 
   "contexts": ['link'], 
   "onclick": linkOnClick
 })
 
 var imageId = chrome.contextMenus.create({
-  "title": "Add image to your inspiration list", 
+  "title": "Save image to Web Clipper", 
   "contexts": ['image'], 
   "onclick": imageOnClick
 })
@@ -136,7 +140,7 @@ var imageId = chrome.contextMenus.create({
 // })
 
 var audioId = chrome.contextMenus.create({
-  "title": "Add audio to your inspiration list", 
+  "title": "Save audio to Web Clipper", 
   "contexts": ['audio'], 
   "onclick": audioOnClick
 })

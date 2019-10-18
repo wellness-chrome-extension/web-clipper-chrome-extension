@@ -1,17 +1,27 @@
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
-    let val
-    let link1 = document.getElementById('link');
-    chrome.storage.sync.get(['data'], function(result) {
-      val = result.data;
-      document.getElementById('output').innerHTML = val;
+    let title1 = document.getElementById('title');
+    chrome.storage.sync.get(null, function(result) {
+      let newArr = [];
+
+      for (let key in result){
+        newArr.push([key, result[key]]);
+      }
+
+      let sortedArr = newArr.sort((a, b) => b[0] - a[0]);
+
+      if (document.getElementById('output1')){
+        document.getElementById('output1').innerHTML = sortedArr[0][1][0];
+        document.getElementById('output2').innerHTML = sortedArr[1][1][0];
+        document.getElementById('output3').innerHTML = sortedArr[2][1][0];
+        document.getElementById('output4').innerHTML = sortedArr[3][1][0];
+        document.getElementById('output5').innerHTML = sortedArr[4][1][0];
+        document.getElementById('output6').innerHTML = sortedArr[5][1][0];
+      }
     })
     // onClick's logic below:
-    if (link1){
-      link1.addEventListener('click', function() {
-        document.getElementById("link").style.fontWeight = 'bold';
+    if (title1){
+      title1.addEventListener('click', function() {
+        document.getElementById("title").style.fontWeight = 'bold';
       });
       
     }
@@ -19,9 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-    console.log('New value is %s', changes['data'].newValue)
+    let newArr = []
+    for (let key in changes){
+      newArr.push([key, changes[key].newValue])
+    }
+    let sortedArr = newArr.sort((a, b) => b[0] - a[0]);
+
+    console.log('New value is %s %s %s !!', sortedArr[0][0], sortedArr[0][1][0], sortedArr[0][1][1])
     for (var key in changes) {
       var storageChange = changes[key];
       console.log('Storage key "%s" in namespace "%s" changed. ' +
@@ -31,7 +46,9 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
                   storageChange.oldValue,
                   storageChange.newValue);
     }
-    chrome.browserAction.setBadgeText({ text: changes['data'].newValue })
+    if(sortedArr[0][1][0]){
+      chrome.browserAction.setBadgeText({ text: sortedArr[0][1][0] })
+    }
 
   });
 

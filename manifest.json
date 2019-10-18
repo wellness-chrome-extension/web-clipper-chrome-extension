@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "Inspiration List",
-    "description": "DESCRIPTION",
+    "name": "Web Clipper",
+    "description": "Right click and save your favorite parts of the internet in this handy, simple chrome extension.",
     "options_page": "profile.html",
     "version": "1.0.0",
     "background": {
@@ -13,14 +13,5 @@
     "icons": { "16": "icon.png",
       "48": "icon.png",
      "128": "icon.png" },
-    "permissions": ["activeTab", "contextMenus", "storage"],
-
-    "content_scripts": [
-      {
-        "matches": [
-          "<all_urls>"
-        ],
-        "js": ["jquery-3.4.1.min.js", "content.js"]
-      }
-    ]
+    "permissions": ["activeTab", "contextMenus", "storage"]
   }
