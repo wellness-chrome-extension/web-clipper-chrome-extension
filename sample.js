@@ -24,11 +24,13 @@
     console.log("item " + info.menuItemId + " was clicked");
     console.log("info: " + JSON.stringify(info));
     console.log("tab: " + JSON.stringify(tab));
-    chrome.storage.sync.set({data: info["pageUrl"], type: 'page'}, function() {
+    let date1 = new Date;
+    let seconds1 = date1.getTime().toString();
+    chrome.storage.sync.set({[seconds1]: [info["pageUrl"], 'page']}, function() {
       console.log('pageUrl is set to ' + info["pageUrl"]);
     });
-    chrome.storage.sync.get(['data', 'type'], function(result) {
-      console.log(result.type + ' is set to ' + result.data);
+    chrome.storage.sync.get([seconds1], function(result) {
+      console.log(result[seconds1][0] + ' is set to ' + result[seconds1][1] + 'and the timeId is ' + seconds1);
     });
   }
 
@@ -41,7 +43,7 @@
     chrome.storage.sync.set({[seconds1]: [info["selectionText"], 'selection']}, function() {
       console.log('selectionText is set to ' + info["selectionText"]);
     });
-    chrome.storage.sync.get([seconds1, 'type'], function(result) {
+    chrome.storage.sync.get([seconds1], function(result) {
       console.log(result[seconds1][0] + ' is set to ' + result[seconds1][1] + 'and the timeId is ' + seconds1);
     });
   }
@@ -55,7 +57,7 @@
     chrome.storage.sync.set({[seconds1]: [info["linkUrl"], 'link']}, function() {
       console.log('link is set to ' + info["linkUrl"]);
     });
-    chrome.storage.sync.get([seconds1, 'type'], function(result) {
+    chrome.storage.sync.get([seconds1], function(result) {
       console.log(result[seconds1][0] + ' is set to ' + result[seconds1][1] + 'and the timeId is ' + seconds1);
     });
   }
@@ -64,11 +66,13 @@
     console.log("item " + info.menuItemId + " was clicked");
     console.log("info: " + JSON.stringify(info));
     console.log("tab: " + JSON.stringify(tab));
-    chrome.storage.sync.set({data: info["srcUrl"], type: 'image'}, function() {
+    let date1 = new Date;
+    let seconds1 = date1.getTime().toString();
+    chrome.storage.sync.set({[seconds1]: [info["srcUrl"], 'image']}, function() {
       console.log('image is set to ' + info["srcUrl"]);
     });
-    chrome.storage.sync.get(['data', 'type'], function(result) {
-      console.log(result.type + ' is set to ' + result.data);
+    chrome.storage.sync.get([seconds1], function(result) {
+      console.log(result[seconds1][0] + ' is set to ' + result[seconds1][1] + 'and the timeId is ' + seconds1);
     });
   }
 
@@ -76,11 +80,13 @@
     console.log("item " + info.menuItemId + " was clicked");
     console.log("info: " + JSON.stringify(info));
     console.log("tab: " + JSON.stringify(tab));
-    chrome.storage.sync.set({data: info["srcUrl"], type: 'audio'}, function() {
+    let date1 = new Date;
+    let seconds1 = date1.getTime().toString();
+    chrome.storage.sync.set({[seconds1]: [info["srcUrl"], 'audio']}, function() {
       console.log('audio is set to ' + info["srcUrl"]);
     });
-    chrome.storage.sync.get(['data', 'type'], function(result) {
-      console.log(result.type + ' is set to ' + result.data);
+    chrome.storage.sync.get([seconds1, 'type'], function(result) {
+      console.log(result[seconds1][0] + ' is set to ' + result[seconds1][1] + 'and the timeId is ' + seconds1);
     });
   }
 
