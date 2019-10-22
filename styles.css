@@ -1,13 +1,19 @@
 div {
     height: 20px;
-    width: 450px;
-    font-size: 15px;
+    width: 600px;
+    font-size: 12px;
+}
+
+.output {
+    width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px;
 }
 
 .innerElement {
     border: 1px solid black;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 2px
+    border-bottom: 0px;
+    display: flex
 }

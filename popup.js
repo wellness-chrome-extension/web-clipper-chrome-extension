@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let title1 = document.getElementById('title');
     let urlValues = ['page', 'link', 'image', 'audio']
     chrome.storage.sync.get(null, function(result) {
       let newArr = [];
@@ -49,12 +48,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
     })
-    // onClick's logic below:
-    if (title1){
+
+    if (document.getElementById('title')){
+      document.getElementById('title').addEventListener('click', function() {
+        document.getElementById("title").style.fontWeight = 'bold';
+      });
+    }
+    if (document.getElementById('output1delete')){
       title1.addEventListener('click', function() {
         document.getElementById("title").style.fontWeight = 'bold';
       });
-      
     }
 });
 
